@@ -2,19 +2,22 @@
 Ogni secondo il nostro countdown dovrà scalare fino alle 9:30 di domani mattina! */
 
 const countdownEl = document.getElementById("countdown");
+const testEl = document.getElementById("test");
 
 const clock = setInterval(function(){
    const date = new Date("09/06/2023 09:30:00");
-   const dateMilliseconds = date.getTime();
+   const dateSeconds = parseInt(date.getTime() / 1000);
    const currentTime = new Date();
-   const currentTimeMilliseconds = currentTime.getTime();
-   const finalTimeMilliseconds = dateMilliseconds - currentTimeMilliseconds;
+   const currentTimeSeconds = parseInt(currentTime.getTime() / 1000);
+   const finalTimeSeconds = dateSeconds - currentTimeSeconds;
 
-   if (finalTimeMilliseconds != 0) {
-      countdownEl.innerHTML = finalTimeMilliseconds;
-   } else {
+
+   if (finalTimeSeconds != 0) {
+      countdownEl.innerHTML = finalTimeSeconds;   
+   } else{
       clearInterval(clock);
       countdownEl.innerHTML = "È arrivato il momento della correzione!";
    }
-}, 1);
+}, 1000);
+
 
