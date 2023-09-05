@@ -9,11 +9,34 @@ const clock = setInterval(function(){
    const dateSeconds = parseInt(date.getTime() / 1000);
    const currentTime = new Date();
    const currentTimeSeconds = parseInt(currentTime.getTime() / 1000);
-   const finalTimeSeconds = dateSeconds - currentTimeSeconds;
+   let seconds = dateSeconds - currentTimeSeconds;
+   let minutes = 0;
+   let hours = 0;
 
 
-   if (finalTimeSeconds != 0) {
-      countdownEl.innerHTML = finalTimeSeconds;   
+   if (seconds != 0) {
+      while(seconds > 59) {
+         minutes++;
+         seconds = seconds - 60;
+      }
+      while (minutes > 59) {
+         hours++;
+         minutes = minutes - 60;
+      }
+
+      if (hours < 10) {
+         hours = "0" + hours;
+      }
+
+      if (minutes < 10) {
+         minutes = "0" + minutes;
+      }
+
+      if (seconds < 10) {
+         seconds = "0" + seconds;
+      }
+
+      countdownEl.innerHTML = `${hours}:${minutes}:${seconds}`;
    } else{
       clearInterval(clock);
       countdownEl.innerHTML = "È arrivato il momento della correzione!";
