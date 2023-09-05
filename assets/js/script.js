@@ -5,25 +5,36 @@ const countdownEl = document.getElementById("countdown");
 const testEl = document.getElementById("test");
 
 const clock = setInterval(function(){
+
+   // Set date of countdown
    const date = new Date("09/06/2023 09:30:00");
+   // Convert the date in seconds
    const dateSeconds = parseInt(date.getTime() / 1000);
+   // Get the actual date
    const currentTime = new Date();
+   // Convert the date in seconds
    const currentTimeSeconds = parseInt(currentTime.getTime() / 1000);
+   // Get the total seconds to the countdown
    let seconds = dateSeconds - currentTimeSeconds;
    let minutes = 0;
    let hours = 0;
 
 
    if (seconds != 0) {
+
+      // Convert seconds to minutes
       while(seconds > 59) {
          minutes++;
          seconds = seconds - 60;
       }
+
+      // Convert minutes to hours
       while (minutes > 59) {
          hours++;
          minutes = minutes - 60;
       }
 
+      // Add two digits format to numbers < 10
       if (hours < 10) {
          hours = "0" + hours;
       }
